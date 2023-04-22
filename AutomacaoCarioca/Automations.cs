@@ -29,12 +29,18 @@ namespace AutomacaoCarioca
 {
     public class Automations : IDisposable
     {
+        #region PROPS
+
         private static string _user { get; set; }
         private static string _password { get; set; }
-        private static string _xmlString { get; set; } 
+        private static string _xmlString { get; set; }
         public static IWebDriver Driver => WebDriver.Driver;
 
         private static ConnectToDB _dataBase = new();
+
+        #endregion
+
+        #region Public Methods
 
         public void GoToWebSite(string url)
         {
@@ -51,7 +57,7 @@ namespace AutomacaoCarioca
             inputUser.SendKeys(user);
             _user = user;
 
-            IWebElement inputPassword = HelperPath.ValidationToReturnElement(PathsToAutomations.ByPasswordInput, 1, 10);    
+            IWebElement inputPassword = HelperPath.ValidationToReturnElement(PathsToAutomations.ByPasswordInput, 1, 10);
             inputPassword.SendKeys(password);
             _password = password;
 
@@ -67,6 +73,8 @@ namespace AutomacaoCarioca
             else
                 throw new Exception("Não foi possível realizar o login.");
         }
+
+        #endregion
 
         public void AcessXmlGroup()
         {
